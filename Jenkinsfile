@@ -1,10 +1,12 @@
 pipeline {
     agent any
-
+    environment {
+        python = "C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.496.0_x64__qbz5n2kfra8p0\\python3.13.exe"
+    }
     stages {
         stage('Build') {
             steps {
-                echo 'Building..'
+                bat "${python} code.py"
             }
         }
         stage('Test') {
@@ -14,17 +16,7 @@ pipeline {
         }
         stage('Scripting') {
             steps {
-                parallel {
-                    "TaskOne" :{
-                        echo "task one stuff 1"
-                        echo "task one stuff 2"
-                        echo "task one stuff 3"
-                    },
-                    "TaskTwo" :{
-                        echo "task two stuff 1"
-                        echo "task two stuff 2"
-                    }
-                }
+                echo "Scirpting"
             }
         }
     }
